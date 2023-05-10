@@ -3,12 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const homePageSlice = createSlice({
   name: "HomePage",
   initialState: {
-    genres: {
-
-    },
     imgUrl: {
         
     },
+    genres: {
+
+    },
+
   },
   reducers: {
     getAPIConfiguration: (state, action) => {

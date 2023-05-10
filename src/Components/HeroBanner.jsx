@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useFetch from "../Hooks/useFetch";
+import { useSelector } from "react-redux";
+import LazyLoader from "./LazyLoader";
 
 const HeroBanner = () => {
   const [heroBnrBg, setHeroBnrBg] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+
+  const { data, loading } = useFetch("/movie/upcoming");
+  const imgBnrUrl = useSelector((state) => state.homeSlice.imgUrl.backdrop);
+
+  useEffect(() => {
+    const backGround =
+      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+    setHeroBnrBg(imgBnrUrl + backGround);
+  }, [data]);
 
   const searchQueryHandler = (event) => {
     if (event.key === "Enter" && searchQuery.length > 0) {
@@ -12,13 +24,18 @@ const HeroBanner = () => {
     }
   };
 
+  // console.log(heroBnrBg);
+
   return (
+    <div className=" relative">
+      <div> {!loading && <LazyLoader image={heroBnrBg}/>} </div>
+
     <div>
-      <div>
+      <div className="absolute top-0">
         <h1>TheaterWalls</h1>
       </div>
 
-      <div>
+      <div className="absolute bottom-0">
         <input
           type="text"
           placeholder="Search here..."
@@ -28,6 +45,7 @@ const HeroBanner = () => {
         />
 
         <button>Search</button>
+      </div>
       </div>
     </div>
   );
