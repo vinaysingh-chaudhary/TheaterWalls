@@ -13,25 +13,19 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [menuSlideDown, setMenuSlideDown] = useState(50);
-  const [searchSlideDown, setSearchSlideDown] = useState(50);
 
   const openPhoneMenu = () => {
     setPhoneMenu(true);
     setShowSearch(false);
-    setMenuSlideDown(-50);
   };
 
   const closePhoneMenu = () => {
     setPhoneMenu(false);
-    setMenuSlideDown(50);
   };
 
   const openSearch = () => {
     setShowSearch(true);
-    setSearchSlideDown(-50);
     setPhoneMenu(false);
-    setMenuSlideDown(50);
   };
 
   const searchQueryHandler = (event) => {
@@ -43,22 +37,34 @@ const Navbar = () => {
     }
   };
 
+  const navigationHandler = (type) =>  {
+    if (type === "movie") {
+          navigate(`/explore/movie`)
+    } else {
+      navigate(`/explore/tv}`)
+    }
+    setPhoneMenu(false);
+  }
+
+
   // console.log(query);
 
   return (
     <div className="flex justify-between items-center bg-blue-950 relative">
       <div className="w-[70%]">
-        <span className="text-3xl">TheaterWalls</span>
+        <span className="text-3xl" onClick={() => navigate("/")}>TheaterWalls</span>
       </div>
 
+      {/* desktop */}
       <ul className=" w-[30%] justify-evenly items-center hidden sm:flex ">
-        <li>Movies</li>
-        <li>Shows</li>
+        <li onClick={() => navigationHandler("movie")}>Movies</li>
+        <li onClick={() => navigationHandler("tv")}>Shows</li>
         <li>
           <BsSearch className="text-white" onClick={openSearch} />
         </li>
       </ul>
 
+      {/* phone */}
       <div className="flex sm:hidden w-[15%] justify-evenly">
         <BsSearch onClick={openSearch} />
 
@@ -69,18 +75,22 @@ const Navbar = () => {
         )}
       </div>
 
-      <div
-        className={`w-[100%] h-[50px] bg-red-700 absolute bottom-[${menuSlideDown}px] z-10 transition-all flex sm:hidden `}
-      >
-        <ul className="flex flex-col text-center justify-around items-center w-[100%]">
-          <li>Movies</li>
-          <li>Shows</li>
-        </ul>
-      </div>
+      {/* phone */}
+      {phoneMenu && (
+        <div
+          className={`w-[100%] h-[50px] bg-red-700 absolute top-[35px] z-10 transition-all flex sm:hidden `}
+        >
+          <ul className="flex flex-col text-center justify-around items-center w-[100%]">
+            <li onClick={() => navigationHandler("movie")}>Movies</li>
+            <li onClick={() => navigationHandler("tv")}>Shows</li>
+          </ul>
+        </div>
+      )}
 
+      {/* both */}
       {showSearch && (
         <div
-          className={`w-[100%] h-[50px] bg-red-700 absolute bottom-[${searchSlideDown}px] z-10 transition-all flex `}
+          className={`w-[100%] h-[40px] bg-red-700 absolute top-[35px] z-10 transition-all flex `}
         >
           <input
             type="text"
@@ -89,7 +99,9 @@ const Navbar = () => {
             onChange={(event) => setQuery(event.target.value)}
             onKeyUp={searchQueryHandler}
           />
+          <button onClick={() => setShowSearch(false)}>close</button>
         </div>
+        
       )}
     </div>
   );
