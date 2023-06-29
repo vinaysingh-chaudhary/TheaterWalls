@@ -37,22 +37,23 @@ const Navbar = () => {
     }
   };
 
-  const navigationHandler = (type) =>  {
+  const navigationHandler = (type) => {
     if (type === "movie") {
-          navigate(`/explore/movie`)
+      navigate(`/explore/movie`);
     } else {
-      navigate(`/explore/tv`)
+      navigate(`/explore/tv`);
     }
     setPhoneMenu(false);
-  }
-
+  };
 
   // console.log(query);
 
   return (
     <div className="flex justify-between items-center bg-blue-950 relative">
       <div className="w-[70%]">
-        <span className="text-3xl" onClick={() => navigate("/")}>TheaterWalls</span>
+        <span className="text-3xl" onClick={() => navigate("/")}>
+          TheaterWalls
+        </span>
       </div>
 
       {/* desktop */}
@@ -101,7 +102,6 @@ const Navbar = () => {
           />
           <button onClick={() => setShowSearch(false)}>close</button>
         </div>
-        
       )}
     </div>
   );

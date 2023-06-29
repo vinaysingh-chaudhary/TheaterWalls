@@ -1,27 +1,19 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
 
-function GenreStamp({genre}) {
-
-  // console.log(genre);
-  const genreData = useSelector((state) => state.homeSlice.genres)
-//   console.log(data);
+function GenreStamp({ genre }) {
+  const genreData = useSelector((state) => state.homeSlice.genres);
 
   return (
-    <div >
+    <div>
       {genre?.map((gen) => {
-
         // for safe case
-        if(!genreData[gen]?.name) return;
+        if (!genreData[gen]?.name) return;
 
-          return (
-            <p key={gen}>
-                {genreData[gen]?.name}
-            </p> 
-          )
+        return <p key={gen}>{genreData[gen]?.name}</p>;
       })}
     </div>
-  )
+  );
 }
 
-export default GenreStamp
+export default GenreStamp;
