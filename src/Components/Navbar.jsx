@@ -41,7 +41,7 @@ const Navbar = () => {
     if (type === "movie") {
           navigate(`/explore/movie`)
     } else {
-      navigate(`/explore/tv}`)
+      navigate(`/explore/tv`)
     }
     setPhoneMenu(false);
   }

@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { fetchApi } from "./API_Service/api"
 import { useSelector, useDispatch } from "react-redux";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { getAPIConfiguration, genresAPICall } from "./Redux/Slices/HomepageSlice";
+import { Routes, Route, BrowserRouter, useParams } from "react-router-dom";
+import { getAPIConfiguration, genresAPICall } from "./Redux/Slices/HomePageSlice";
 import HomePage from "./Pages/HomePage/HomePage";
 import SearchResultPage from './Pages/searchResult/SearchResultPage'
 import Error404 from './Pages/error404/Error404'
@@ -22,7 +22,9 @@ function App() {
 
   useEffect(() => {
     fetchConfiguration();
+    callForGenre();
   },[]);
+
 
 const fetchConfiguration = ( ) => {
   fetchApi("/configuration")
@@ -30,6 +32,7 @@ const fetchConfiguration = ( ) => {
 
     const imagesUrl = {
         backdrop : res.images.secure_base_url + "original",
+        //here original is the size of the image
         poster : res.images.secure_base_url + "original",
         profile : res.images.secure_base_url+ "original",
     }
@@ -38,7 +41,30 @@ const fetchConfiguration = ( ) => {
   })
 }
 
-// console.log(imgUrl);
+
+
+const callForGenre = async () => {
+  let genreArr = [];
+  let genreCategory = [ "tv", "movie"];
+  let allGenre = {}
+
+  genreCategory.forEach((url) => {
+    genreArr.push(fetchApi(`/genre/${url}/list`))
+  })
+
+  const data = await Promise.all(genreArr);
+
+  data.map(({genres})=> {
+    //see here genres get destructured first 
+    return genres.map((item) => (allGenre[item.id] = item))
+  })
+
+  dispatch(genresAPICall(allGenre));
+}
+
+// const {genres} = useSelector((state) => state.homeSlice)
+// console.log(genres)
+
 
   return (
     <>

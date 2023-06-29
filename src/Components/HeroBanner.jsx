@@ -12,6 +12,7 @@ const HeroBanner = () => {
   const { data, loading } = useFetch("/movie/upcoming");
   const imgBnrUrl = useSelector((state) => state.homeSlice.imgUrl.backdrop);
 
+
   useEffect(() => {
     const backGround =
       data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
@@ -24,9 +25,13 @@ const HeroBanner = () => {
     }
   };
 
-  // console.log(heroBnrBg);
+  const onSearchPress = () =>{
+    navigate(`/search/${searchQuery}`);
+  }
 
-  return (
+
+  return ( 
+    
     <div className=" relative">
       <div> {!loading && <LazyLoader image={heroBnrBg}/>} </div>
 
@@ -44,7 +49,7 @@ const HeroBanner = () => {
           onChange={(event) => setSearchQuery(event.target.value)}
         />
 
-        <button>Search</button>
+        <button onClick={onSearchPress}>Search</button>
       </div>
       </div>
     </div>
