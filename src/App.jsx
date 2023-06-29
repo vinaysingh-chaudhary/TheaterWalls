@@ -62,10 +62,6 @@ const callForGenre = async () => {
   dispatch(genresAPICall(allGenre));
 }
 
-// const {genres} = useSelector((state) => state.homeSlice)
-// console.log(genres)
-
-
   return (
     <>
     <Navbar/>

@@ -11,10 +11,8 @@ const TrendingCarousel = () => {
 
   const onTabFunction = (tab, index) => {
     if (index === 0) {
-      console.log(tab);
       setTime_Window(tab === "Day" ? "day" : "Day");
     } else {
-      console.log(tab);
       setTime_Window(tab === "Week" ? "week" : "Week");
     }
   };

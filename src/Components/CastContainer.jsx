@@ -17,7 +17,8 @@ function CastContainer({ id, mediaType }) {
           <CastCard
             key={index}
             profilePic={`${imgUrl?.profile}${mem?.profile_path}`}
-            character={mem?.character}
+            name={mem?.name}
+            character={mem.character}
           />
         );
       })}

@@ -1,4 +1,3 @@
-import React from "react";
 import useFetch from "../../Hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import CircleRating from "../../Components/CircularRating";
 import dayjs from "dayjs";
 import Credits from "../../Components/Credits";
 import CastContainer from "../../Components/CastContainer";
+import SimilarContainer from "./SimilarContainer";
 
 const DetailedPage = () => {
   const { imgUrl } = useSelector((state) => state.homeSlice);
@@ -17,8 +17,6 @@ const DetailedPage = () => {
 
   const { data } = useFetch(`/${mediaType}/${id}`);
 
-  // console.log(data)
-
   const genresId = data?.genres?.map((genre) => genre.id);
 
   return (
@@ -26,7 +24,7 @@ const DetailedPage = () => {
       <div className="w-[90%] h-[45vh] border-2 border-red-900 mt-8">
         <img
           className="w-[100%] h-[100%] object-cover"
-          src={`${backdrop}${data?.backdrop_path}`}
+          src={`${backdrop}${data?.poster_path}`}
           alt=""
         />
       </div>
@@ -84,6 +82,10 @@ const DetailedPage = () => {
 
       <div className="w-[100%] h-[20vh]">
         <CastContainer id={id} mediaType={mediaType} />
+      </div>
+
+      <div className="w-[100%] h-[20vh]">
+        <SimilarContainer mediaType={mediaType} id={id} />
       </div>
     </div>
   );

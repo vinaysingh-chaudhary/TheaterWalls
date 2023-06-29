@@ -1,10 +1,11 @@
 import React from "react";
 import CircleRating from "./CircularRating";
 import GenreStamp from "./GenreStamp";
-import { useSelector } from "react-redux";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Card({ img, id, title, rating, release, genre, naviFunc, media }) {
+
+
   return (
     <div
       className="min-w-[150px] h-[90%] border-red-900 border-2 relative"

@@ -48,7 +48,7 @@ function CarouselContainer({ movieData, loading, endpoint }) {
           return !loading ? (
             <Card
               key={item.id}
-              img={`${backdrop}${item.backdrop_path}`}
+              img={`${backdrop}${item.poster_path}`}
               id={item.id}
               media={item.media_type || endpoint}
               title={

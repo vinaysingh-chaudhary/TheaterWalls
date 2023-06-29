@@ -25,7 +25,12 @@ const HeroBanner = () => {
   };
 
   const onSearchPress = () => {
-    navigate(`/search/${searchQuery}`);
+    if(searchQuery.length>0){
+      navigate(`/search/${searchQuery}`);
+    }else{
+      return;
+    }
+    
   };
 
   return (
