@@ -33,34 +33,34 @@ function CarouselContainer({ movieData, loading, endpoint }) {
     <div className="w-[100%] h-[100%] relative">
       <AiOutlineArrowLeft
         onClick={() => slidingArrowFun("left")}
-        className="w-[5%] h-[100%] absolute left-0"
+        className="w-[5%] h-[100%] absolute left-0 z-10"
       />
       <AiOutlineArrowRight
         onClick={() => slidingArrowFun("right")}
-        className="w-[5%] h-[100%] absolute right-0"
+        className="w-[5%] h-[100%] absolute right-0 z-10"
       />
 
       <div
-        className=" w-[100%] h-[100%] overflow-x-auto flex flex-row items-center gap-3"
+        className=" w-[100%] h-[41vh] overflow-x-auto flex flex-row items-center gap-3 pl-3 pr-2 mb-8"
         ref={crslContainer}
       >
         {movieData?.map((item) => {
           return !loading ? (
             <Card
-              key={item.id}
-              img={`${backdrop}${item.poster_path}`}
-              id={item.id}
-              media={item.media_type || endpoint}
+              key={item?.id}
+              img={`${backdrop}${item?.poster_path}`}
+              id={item?.id}
+              media={item?.media_type || endpoint}
               title={
-                item.original_title ? item.original_title : item.original_name
+                item?.original_title ? item?.original_title : item?.original_name
               }
-              rating={item.vote_average.toFixed(1)}
+              rating={item?.vote_average?.toFixed(1)}
               release={
-                item.release_date
-                  ? dayjs(item.release_date).format("MMM D, YYYY")
-                  : dayjs(item.first_air_date).format("MMM D, YYYY")
+                item?.release_date
+                  ? dayjs(item.release_date)?.format("MMM D, YYYY")
+                  : dayjs(item.first_air_date)?.format("MMM D, YYYY")
               }
-              genre={item.genre_ids}
+              genre={item?.genre_ids}
               naviFunc={detailNavigation}
             />
           ) : (

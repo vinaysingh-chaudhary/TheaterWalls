@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../Hooks/useFetch";
 import { useSelector } from "react-redux";
-import LazyLoader from "./LazyLoader";
+import { BsSearch } from "react-icons/bs";
 
 const HeroBanner = () => {
   const [heroBnrBg, setHeroBnrBg] = useState("");
@@ -15,7 +15,7 @@ const HeroBanner = () => {
   useEffect(() => {
     const backGround =
       data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setHeroBnrBg(imgBnrUrl + backGround);
+    setHeroBnrBg(`${imgBnrUrl}${backGround}`);
   }, [data]);
 
   const searchQueryHandler = (event) => {
@@ -25,33 +25,39 @@ const HeroBanner = () => {
   };
 
   const onSearchPress = () => {
-    if(searchQuery.length>0){
+    if (searchQuery.length > 0) {
       navigate(`/search/${searchQuery}`);
-    }else{
+    } else {
       return;
     }
-    
   };
 
   return (
-    <div className=" relative">
-      <div> {!loading && <LazyLoader image={heroBnrBg} />} </div>
+    <div className=" relative w-[100%] h-[25vh]">
+      <div className="w-[100%] h-[100%]">
+        {!loading && (
+          <img src={heroBnrBg} className="w-[100%] h-[100%] object-cover" />
+        )}
+      </div>
+
+      <div className="absolute top-0 w-[100%] h-[102%] bg-gradient-to-b from-[#00000024] to-[#000000]"></div>
 
       <div>
-        <div className="absolute top-0">
-          <h1>TheaterWalls</h1>
-        </div>
-
-        <div className="absolute bottom-0">
+        <div className="w-[70%] h-[21%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between rounded-md p-1 bg-[#6c90b750]">
           <input
             type="text"
             placeholder="Search here..."
-            className="border-[1.5px] border-black"
+            className="rounded-md pl-4 focus:outline-black w-[80%] text-pink-400"
             onKeyUp={searchQueryHandler}
             onChange={(event) => setSearchQuery(event.target.value)}
           />
 
-          <button onClick={onSearchPress}>Search</button>
+          <button
+            className="rounded-md bg-white text-black w-[18%] flex justify-center items-center"
+            onClick={onSearchPress}
+          >
+            <BsSearch className="text-pink-500" />
+          </button>
         </div>
       </div>
     </div>

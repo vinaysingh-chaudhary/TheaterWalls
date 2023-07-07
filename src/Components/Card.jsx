@@ -1,33 +1,51 @@
 import React from "react";
-import CircleRating from "./CircularRating";
-import GenreStamp from "./GenreStamp";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { AiFillStar } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
-function Card({ img, id, title, rating, release, genre, naviFunc, media }) {
-
+function Card({
+  img,
+  id,
+  title,
+  rating,
+  release,
+  genre,
+  naviFunc,
+  media,
+  css,
+}) {
+  const navigate = useNavigate();
 
   return (
     <div
-      className="min-w-[150px] h-[90%] border-red-900 border-2 relative"
-      onClick={() => naviFunc(media === "movie" ? "movie" : "tv", id)}
+      className={`${
+        css === "explore" ? "max-w-[48%]" : "min-w-[45%]"
+      } max-h-[500px] relative rounded-md p-2 bg-[#3b3b3b]`}
+      onClick={
+        naviFunc
+          ? () => naviFunc(media === "movie" ? "movie" : "tv", id)
+          : () => navigate(`/${data?.media_type || mediaType}/${data?.id}`)
+      }
     >
-      <LazyLoadImage
-        className="w-[100%] h-[100%] object-cover"
-        src={img}
-        alt=""
-      />
+      <div className={`w-[100%] relative mb-8`}>
+        <img
+          className={`w-[100%] h-[60%] object-cover relative rounded-md`}
+          src={img}
+          alt=""
+        />
 
-      <div className=" h-[50%] w-[100%] absolute bottom-0">
-        <h5>{title}</h5>
-        <p>{release}</p>
+        <div className="w-[90%] h-[15%] absolute bottom-[-20px] left-[5%] bg-[#bbbbbc] p-1 rounded-md flex justify-center items-center">
+          <p>{rating}</p>
+          <p>
+            <AiFillStar className="text-yellow-400" />
+          </p>
+        </div>
       </div>
 
-      <div className="w-[40%] h-[10%] border-2 border-white flex justify-between">
-        <CircleRating rating={rating} />
-      </div>
-
-      <div className="flex flex-row text-[1rem]">
-        <GenreStamp genre={genre} />
+      <div className="w-[100%]  bottom-0">
+        <h5 className="text-white text-xl uppercase">
+          {title?.substring(0, 13)}
+        </h5>
+        <p className="text-[#ffffffa9]">{release}</p>
       </div>
     </div>
   );

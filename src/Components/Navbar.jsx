@@ -2,39 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { TiThMenu } from "react-icons/ti";
-import { GrClose } from "react-icons/gr";
+import { MdClose } from "react-icons/md";
 
 const Navbar = () => {
-  const [query, setQuery] = useState("");
-  const [show, setShow] = useState("top");
-  const [lastScrollY, setLastScrollY] = useState(false);
-  const [showSearch, setShowSearch] = useState("");
   const [phoneMenu, setPhoneMenu] = useState(false);
-
   const navigate = useNavigate();
-  const location = useLocation();
 
   const openPhoneMenu = () => {
     setPhoneMenu(true);
-    setShowSearch(false);
   };
 
   const closePhoneMenu = () => {
     setPhoneMenu(false);
-  };
-
-  const openSearch = () => {
-    setShowSearch(true);
-    setPhoneMenu(false);
-  };
-
-  const searchQueryHandler = (event) => {
-    if (event.key === "Enter" && query.length > 0) {
-      navigate(`/search/${query}`);
-      setTimeout(() => {
-        setShowSearch(false);
-      }, 3000);
-    }
   };
 
   const navigationHandler = (type) => {
@@ -46,61 +25,63 @@ const Navbar = () => {
     setPhoneMenu(false);
   };
 
-  // console.log(query);
-
   return (
-    <div className="flex justify-between items-center bg-blue-950 relative">
-      <div className="w-[70%]">
-        <span className="text-3xl" onClick={() => navigate("/")}>
-          TheaterWalls
-        </span>
+    <div className="h-[7vh] flex justify-between items-center bg-[#0000007d] relative]">
+      <div className="w-[100%] text-white">
+        <p className="text-3xl text-center" onClick={() => navigate("/")}>
+          Theater<span className="text-pink-500">Walls</span>
+        </p>
       </div>
 
       {/* desktop */}
       <ul className=" w-[30%] justify-evenly items-center hidden sm:flex ">
-        <li onClick={() => navigationHandler("movie")}>Movies</li>
-        <li onClick={() => navigationHandler("tv")}>Shows</li>
-        <li>
-          <BsSearch className="text-white" onClick={openSearch} />
+        <li
+          className="text-white hover:underline"
+          onClick={() => navigationHandler("movie")}
+        >
+          Movies
+        </li>
+        <li
+          className="text-white hover:underline"
+          onClick={() => navigationHandler("tv")}
+        >
+          Shows
         </li>
       </ul>
 
       {/* phone */}
-      <div className="flex sm:hidden w-[15%] justify-evenly">
-        <BsSearch onClick={openSearch} />
-
+      <div className="flex sm:hidden w-[7%] justify-evenly mr-1 absolute right-0">
         {phoneMenu ? (
-          <GrClose onClick={closePhoneMenu} />
+          <MdClose
+            className="text-white text-4xl z-[2000]"
+            onClick={closePhoneMenu}
+          />
         ) : (
-          <TiThMenu onClick={openPhoneMenu} />
+          <TiThMenu className="text-white text-2xl" onClick={openPhoneMenu} />
         )}
       </div>
 
       {/* phone */}
       {phoneMenu && (
         <div
-          className={`w-[100%] h-[50px] bg-red-700 absolute top-[35px] z-10 transition-all flex sm:hidden `}
+          className={`w-[100%] h-[100%] bg-[#0000006c] backdrop-blur-md absolute top-[0%] z-[1000] transition-all flex justify-center items-center sm:hidden`}
         >
-          <ul className="flex flex-col text-center justify-around items-center w-[100%]">
-            <li onClick={() => navigationHandler("movie")}>Movies</li>
-            <li onClick={() => navigationHandler("tv")}>Shows</li>
-          </ul>
-        </div>
-      )}
-
-      {/* both */}
-      {showSearch && (
-        <div
-          className={`w-[100%] h-[40px] bg-red-700 absolute top-[35px] z-10 transition-all flex `}
-        >
-          <input
-            type="text"
-            placeholder="search.."
-            className="w-[100%]"
-            onChange={(event) => setQuery(event.target.value)}
-            onKeyUp={searchQueryHandler}
-          />
-          <button onClick={() => setShowSearch(false)}>close</button>
+          <div className="w-[70%] h-[30%] bg-[#171717d5] flex flex-col justify-center items-center rounded-lg">
+            <ul className="flex flex-col text-center justify-center items-center w-[100%] h-[100%] gap-7">
+              <li
+                className="text-xl text-white hover:scale-[1.1] bg-black w-[40%] rounded-md h-[15%] flex justify-center items-center shadow-pink-500 shadow-[rgba(7,_65,_210,_0.1)_0px_2px_15px] uppercase "
+                onClick={() => navigationHandler("movie")}
+              >
+                Movies
+              </li>
+              <li
+                className="text-xl text-white hover:scale-[1.1] bg-black w-[40%] rounded-md h-[15%] flex justify-center items-center shadow-pink-500 shadow-[rgba(7,_65,_210,_0.1)_0px_2px_15px] uppercase "
+                onClick={() => navigationHandler("tv")}
+              >
+                Shows
+              </li>
+            </ul>
+          </div>
         </div>
       )}
     </div>

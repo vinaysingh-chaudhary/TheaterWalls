@@ -2,76 +2,88 @@ import useFetch from "../../Hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import GenreStamp from "../../Components/GenreStamp";
-import CircleRating from "../../Components/CircularRating";
 import dayjs from "dayjs";
 import Credits from "../../Components/Credits";
 import CastContainer from "../../Components/CastContainer";
-import SimilarContainer from "./SimilarContainer";
+import { AiFillStar } from "react-icons/ai";
 
 const DetailedPage = () => {
   const { imgUrl } = useSelector((state) => state.homeSlice);
   const backdrop = imgUrl?.backdrop;
-
   const { id } = useParams();
   const { mediaType } = useParams();
 
-  const { data } = useFetch(`/${mediaType}/${id}`);
+  const { data, loading } = useFetch(`/${mediaType}/${id}`);
+  console.log(data);
 
   const genresId = data?.genres?.map((genre) => genre.id);
 
   return (
-    <div className="w-[100%] h-[auto] border-2 border-red-900 flex flex-col items-center">
-      <div className="w-[90%] h-[45vh] border-2 border-red-900 mt-8">
+    <div className="w-[100%] h-[auto] flex flex-col items-center bg-black">
+      <div className="w-[100%] h-[70vh] mt-[-2%] relative">
         <img
-          className="w-[100%] h-[100%] object-cover"
-          src={`${backdrop}${data?.poster_path}`}
+          className="w-[100%] h-[100%] object-contain rounded-md"
+          src={`${backdrop}${
+            data?.poster_path ? data?.poster_path : data?.backdrop_path
+          }`}
           alt=""
         />
+
+        <div className="w-[100%] h-[100%] absolute bottom-0 bg-gradient-to-t from-[black] to-[#ffffff00]"></div>
+
+        <div className=" absolute bottom-[7%]  z-[10000] w-[100%] flex flex-col gap-3">
+          <h1 className="text-white text-5xl pl-2 pr-1">
+            {data?.original_title
+              ? `${data?.original_title}`
+              : `${data?.original_name}`}
+          </h1>
+          <p className="text-[#ffffff96] pl-2 text-lg">{data?.tagline}</p>
+        </div>
+
+        <div className="w-[15%] h-[30px] absolute top-3 right-2 bg-[#00000082] rounded-lg flex justify-center items-center backdrop-blur-sm">
+          <p className="text-white flex justify-center items-center gap-2 text-lg pl-2 pr-2">
+            {data?.vote_average?.toFixed(1)} <AiFillStar />
+          </p>
+        </div>
       </div>
 
-      <div>
-        <h1>
-          {data?.original_title
-            ? `${data?.original_title}`
-            : `${data?.original_name}`}
-        </h1>
-        <p>{data?.tagline}</p>
-      </div>
-
-      <div>
+      <div className=" z-[12000] mt-[-20px] ">
         <GenreStamp genre={genresId} />
       </div>
 
-      <div className="w-[20%]">
-        <CircleRating rating={data?.vote_average.toFixed(1)} />
+      <div className="mt-4 pl-2">
+        <p className="text-white text-xl pr-2 text-center">{data?.overview}</p>
       </div>
 
-      <div>
-        <h3>Overview</h3>
-        <p>{data?.overview}</p>
-      </div>
-
-      <div className=" w-[100%] flex flex-row justify-between items-center">
-        <div>
-          <p>Release date</p>
-          <p>
+      <div className=" w-[100%] flex flex-col justify-around items-center mt-6">
+        <div className="w-[95%] flex justify-between items-center gap-3 px-3 border-b-2 border-[#ffffff48] ">
+          <p className="text-[#ffffff86]  text-2xl">Release date</p>
+          <p className="text-[#ffffff86] ">
             {data?.release_date
               ? dayjs(data?.release_date).format("MMM D, YYYY")
               : dayjs(data?.first_air_date).format("MMM D, YYYY")}
           </p>
         </div>
 
-        <div>
-          <p>Status</p>
-          <p>{data?.release_date ? "Released" : data?.status}</p>
+        <div className="w-[95%] flex justify-between items-center gap-3 px-3 border-b-2 border-[#ffffff48]">
+          <p className="text-[#ffffff86] text-2xl">Status</p>
+          <p className="text-[#ffffff86] ">
+            {data?.release_date ? "Released" : data?.status}
+          </p>
         </div>
 
-        <div>
-          <p>{data?.runtime ? "Duration" : "Seasons"}</p>
-          <p>
+        <div className="w-[95%]  flex justify-between items-center gap-3 px-3 border-b-2 border-[#ffffff48]">
+          <p className="text-[#ffffff86]  text-2xl">
+            {data?.runtime ? "Duration" : "Seasons"}
+          </p>
+          <p className="text-[#ffffff86] ">
             {data?.runtime
               ? `${data?.runtime}mins`
-              : `${data?.seasons.length} Seasons`}
+              : `${
+                  data?.number_of_seasons
+                    ? data?.number_of_seasons
+                    : data?.seasons
+                } Seasons`}
           </p>
         </div>
       </div>
@@ -80,12 +92,9 @@ const DetailedPage = () => {
         <Credits id={id} mediaType={mediaType} />
       </div>
 
-      <div className="w-[100%] h-[20vh]">
+      <div className="w-[100%] h-[40vh] flex flex-col gap-4 items-center">
+        <p className=" w-full text-3xl text-white text-center">Cast </p>
         <CastContainer id={id} mediaType={mediaType} />
-      </div>
-
-      <div className="w-[100%] h-[20vh]">
-        <SimilarContainer mediaType={mediaType} id={id} />
       </div>
     </div>
   );

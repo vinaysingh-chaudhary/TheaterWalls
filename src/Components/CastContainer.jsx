@@ -10,8 +10,10 @@ function CastContainer({ id, mediaType }) {
     `/${mediaType}/${id}/credits`
   );
 
+  console.log(credits);
+
   return (
-    <div className="w-[100%] h-[100%] flex gap-4  overflow-x-scroll border-2 border-red-500">
+    <div className="w-[100%] h-[100%] flex gap-4 overflow-x-scroll pl-2 items-center">
       {credits?.cast?.map((mem, index) => {
         return (
           <CastCard
