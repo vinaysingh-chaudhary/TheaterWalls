@@ -22,7 +22,7 @@ const navigate = useNavigate();
         className="rounded-md h-[80%]"
       />
 
-      <p className="w-[65%] h-[15%] bg-[#bbbbbc] mt-[-13%] rounded-md flex justify-center items-center gap-2 ">{rating} <AiFillStar className="text-yellow-500"/></p>
+      <p className="w-[65%] h-[15%] bg-[#bbbbbc] mt-[-13%] rounded-md flex justify-center items-center gap-2 ">{rating? rating : "No"} <AiFillStar className="text-yellow-500"/></p>
       <p className="text-white text-xl text-center h-[40px] flex justify-center items-center">
         {title?.substring(0, 18)}
       </p>

@@ -98,7 +98,7 @@ const ExplorePage = () => {
         <div className="w-[100%] h-[100vh] bg-black flex justify-center items-center ">
           <div className="flex justify-center items-center gap-3 pb-8 bg-black">
             <div className="w-[100%] min-h-[100%] flex justify-center items-center text-white text-4xl">
-              Theater <span className="text-pink-500">Walls</span>
+            Theatre<span className="text-pink-500">Walls</span>
             </div>
             <div className="w-[100%] min-h-[100%] flex justify-center items-center text-white text-4xl">
               <MdMovie />

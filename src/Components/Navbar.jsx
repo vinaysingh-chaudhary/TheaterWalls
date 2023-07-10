@@ -29,7 +29,7 @@ const Navbar = () => {
     <div className="h-[7vh] w-[100%] flex justify-between items-center bg-[#0000007d] relative]">
       <div className="w-[100%] text-white sm:flex sm:justify-start sm:items-center sm:pl-8 ">
         <p className="text-3xl text-center" onClick={() => navigate("/")}>
-          Theater<span className="text-pink-500">Walls</span>
+        Theatre<span className="text-pink-500">Walls</span>
         </p>
       </div>
 
