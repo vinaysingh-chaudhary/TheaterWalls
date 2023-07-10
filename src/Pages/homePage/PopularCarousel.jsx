@@ -15,11 +15,11 @@ function PopularCarousel() {
   };
 
   return (
-    <div className="w-[100%]flex flex-col">
-      <div className="flex justify-between items-center gap-2 px-4 h-[12%] mb-2">
-        <h1 className="text-2xl uppercase text-white">Popular</h1>
+    <div className="w-[100%] flex flex-col xl:items-center">
+      <div className="flex justify-between items-center gap-2 px-4 h-[12%] mb-2 xl:w-[80%]">
+        <h1 className="text-2xl uppercase text-white sm:text-4xl">Popular</h1>
 
-        <div className="w-[50%] min-h-[40px] border-pink-500 border-2 rounded-md flex justify-center items-center">
+        <div className="w-[50%] md:w-[30%] xl:w-[20%] min-h-[40px] border-pink-500 border-2 rounded-md flex justify-center items-center">
           <SwitchTabs
             data={["Series", "Movies"]}
             onTabFunction={onTabFunction}
@@ -27,7 +27,7 @@ function PopularCarousel() {
         </div>
       </div>
 
-      <div className="w-[100%] h-[88%] ">
+      <div className="w-[100%] h-[88%] xl:flex xl:justify-center ">
         {!loading ? (
           <CarouselContainer
             movieData={data?.results}

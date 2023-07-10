@@ -26,23 +26,23 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-[7vh] flex justify-between items-center bg-[#0000007d] relative]">
-      <div className="w-[100%] text-white">
+    <div className="h-[7vh] w-[100%] flex justify-between items-center bg-[#0000007d] relative]">
+      <div className="w-[100%] text-white sm:flex sm:justify-start sm:items-center sm:pl-8 ">
         <p className="text-3xl text-center" onClick={() => navigate("/")}>
           Theater<span className="text-pink-500">Walls</span>
         </p>
       </div>
 
       {/* desktop */}
-      <ul className=" w-[30%] justify-evenly items-center hidden sm:flex ">
+      <ul className=" w-[30%] justify-evenly items-center hidden sm:flex sm:justify-center sm:gap-12 sm:pr-4">
         <li
-          className="text-white hover:underline"
+          className="text-white hover:underline hover:text-pink-500"
           onClick={() => navigationHandler("movie")}
         >
           Movies
         </li>
         <li
-          className="text-white hover:underline"
+          className="text-white hover:underline hover:text-pink-500"
           onClick={() => navigationHandler("tv")}
         >
           Shows

@@ -4,17 +4,17 @@ import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 
-function SearchQueryCard({ data, poster, mediaType,id,title, manualMedia, rating }) {
+function SearchQueryCard({ data, poster, mediaType,id,title, manualMedia, rating, loading}) {
 const navigate = useNavigate();
 
   return (
     <div
-      className={`max-w-[48%] max-h-[400px] relative rounded-md p-2 bg-[#151515] flex justify-center items-center flex-col gap-1`}
+      className={`max-min-w-[42%] sm:max-w-[30%] md:max-w-[26%] lg:max-w-[23%] xl:max-w-[15%] 2xl:max-w-[13%] max-h-[400px] relative rounded-md p-2 bg-[#151515] flex justify-center items-center flex-col gap-1`}
       onClick={() =>navigate(`/${data?.media_type ? data?.media_type : manualMedia || mediaType}/${data?.id}`)}
     >
       <img
         src={
-          poster === "https://image.tmdb.org/t/p/originalnull" 
+          poster === "https://image.tmdb.org/t/p/originalnull" || loading === true
             ? Noposter
             : poster
         }
@@ -22,7 +22,7 @@ const navigate = useNavigate();
         className="rounded-md h-[80%]"
       />
 
-      <p className="w-[90%] h-[15%] bg-[#bbbbbc] mt-[-13%] rounded-md flex justify-center items-center gap-2 ">{rating} <AiFillStar className="text-yellow-500"/></p>
+      <p className="w-[65%] h-[15%] bg-[#bbbbbc] mt-[-13%] rounded-md flex justify-center items-center gap-2 ">{rating} <AiFillStar className="text-yellow-500"/></p>
       <p className="text-white text-xl text-center h-[40px] flex justify-center items-center">
         {title?.substring(0, 18)}
       </p>

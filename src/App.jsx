@@ -12,7 +12,6 @@ import Navbar from "./Components/Navbar";
 
 function App() {
   const dispatch = useDispatch();
-  const { imgUrl } = useSelector((state) => state.homeSlice);
 
   useEffect(() => {
     fetchConfiguration();
@@ -52,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="w-[100vw] h-[auto] bg-[#000000]">
+    <div className="w-[100%] h-[auto] bg-[#000000]">
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />

@@ -7,7 +7,7 @@ import Footer from "../../Components/Footer"
 
 const HomePage = () => {
   return (
-    <div className="w-[100%] h-[100%]">
+    <div className="max-w-[100vw] h-[100%] scrollbar-hide">
       <HeroBanner />
       <TrendingCarousel />
       <PopularCarousel />

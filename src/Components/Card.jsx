@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import Noposter from '../../public/Noposter.png'
 
 function Card({
   img,
@@ -12,14 +13,14 @@ function Card({
   naviFunc,
   media,
   css,
+  loading
+
 }) {
   const navigate = useNavigate();
 
   return (
     <div
-      className={`${
-        css === "explore" ? "max-w-[48%]" : "min-w-[45%]"
-      } max-h-[500px] relative rounded-md p-2 bg-[#3b3b3b]`}
+      className="min-w-[45%] sm:min-w-[24%] md:min-w-[23%] lg:min-w-[18%] xl:min-w-[15%] 2xl:min-w-[15%] max-h-[500px] relative rounded-md p-2 bg-[#3b3b3b]"
       onClick={
         naviFunc
           ? () => naviFunc(media === "movie" ? "movie" : "tv", id)
@@ -29,7 +30,7 @@ function Card({
       <div className={`w-[100%] relative mb-8`}>
         <img
           className={`w-[100%] h-[60%] object-cover relative rounded-md`}
-          src={img}
+          src={loading? Noposter : img}
           alt=""
         />
 
@@ -42,7 +43,7 @@ function Card({
       </div>
 
       <div className="w-[100%]  bottom-0">
-        <h5 className="text-white text-xl uppercase">
+        <h5 className="text-white text-md uppercase sm:text-[1.1rem]">
           {title?.substring(0, 13)}
         </h5>
         <p className="text-[#ffffffa9]">{release}</p>

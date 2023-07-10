@@ -30,18 +30,24 @@ function CarouselContainer({ movieData, loading, endpoint }) {
   };
 
   return (
-    <div className="w-[100%] h-[100%] relative">
+
+  <div className="w-[100%] h-[100%] flex justify-center items-center relative ">
+
+        <div className="w-[6%] xl:w-[7%] min-h-[90%] absolute left-[10%]  xl:left-[9%]  z-[550000] mb-6 bg-gradient-to-r from-black to-[#00000000] opacity-0 xl:opacity-100 "></div>
+        <div className="w-[6%] xl:w-[7%] min-h-[90%] absolute right-[10%]  xl:right-[9%] z-[550000] mb-6 bg-gradient-to-l from-black to-[#00000000]  opacity-0 xl:opacity-100"></div>
+
+    <div className="w-[100%] h-[100%] relative xl:w-[80%]">
       <AiOutlineArrowLeft
         onClick={() => slidingArrowFun("left")}
-        className="w-[5%] h-[100%] absolute left-0 z-10"
+        className="w-[5%] h-[100%] absolute left-0 z-10 xl:w-[3%]"
       />
       <AiOutlineArrowRight
         onClick={() => slidingArrowFun("right")}
-        className="w-[5%] h-[100%] absolute right-0 z-10"
+        className="w-[5%] h-[100%] absolute right-0 z-10 xl:w-[3%]"
       />
 
       <div
-        className=" w-[100%] h-[41vh] overflow-x-auto flex flex-row items-center gap-3 pl-3 pr-2 mb-8"
+        className=" w-[100%] h-[45vh] sm:h-[41vh] md:h-[46vh] md:mb-5 overflow-x-auto flex flex-row items-center gap-3 pl-3 2xl:pl-0 pr-2 mb-8 scrollbar-hide"
         ref={crslContainer}
       >
         {movieData?.map((item) => {
@@ -62,12 +68,15 @@ function CarouselContainer({ movieData, loading, endpoint }) {
               }
               genre={item?.genre_ids}
               naviFunc={detailNavigation}
+              loading={loading}
             />
           ) : (
             <p>loading...</p>
           );
         })}
       </div>
+    </div>
+
     </div>
   );
 }

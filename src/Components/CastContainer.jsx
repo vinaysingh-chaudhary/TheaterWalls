@@ -10,20 +10,24 @@ function CastContainer({ id, mediaType }) {
     `/${mediaType}/${id}/credits`
   );
 
-  console.log(credits);
-
   return (
-    <div className="w-[100%] h-[100%] flex gap-4 overflow-x-scroll pl-2 items-center">
-      {credits?.cast?.map((mem, index) => {
-        return (
-          <CastCard
-            key={index}
-            profilePic={`${imgUrl?.profile}${mem?.profile_path}`}
-            name={mem?.name}
-            character={mem.character}
-          />
-        );
-      })}
+    <div className="w-[100%] h-[100%] flex gap-4 overflow-x-scroll pl-2 items-center scrollbar-hide">
+      {credits?.cast?.length > 0 ? (
+        credits?.cast?.map((mem, index) => {
+          return (
+            <CastCard
+              key={index}
+              profilePic={`${imgUrl?.profile}${mem?.profile_path}`}
+              name={mem?.name}
+              character={mem.character}
+            />
+          );
+        })
+      ) : (
+        <p className="text-white text-2xl text-center w-[100%]">
+          No Cast Data found
+        </p>
+      )}
     </div>
   );
 }

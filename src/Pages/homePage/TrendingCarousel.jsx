@@ -23,12 +23,13 @@ const TrendingCarousel = () => {
       <div className="flex flex-col items-center justify-between gap-2 px-4 h-[12%] mb-3">
         <h1 className="text-6xl uppercase text-white">Trending</h1>
 
-        <div className="w-[50%] min-h-[40px]  border-pink-500 border-2 rounded-lg flex justify-center items-center">
+        <div className="w-[50%] min-h-[40px] md:w-[30%] xl:w-[20%] border-pink-500 border-2 rounded-lg flex justify-center items-center">
           <SwitchTabs data={["Day", "Week"]} onTabFunction={onTabFunction} />
         </div>
       </div>
 
-      <div className="w-[100%] h-[88%]">
+
+      <div className="w-[100%] h-[88%] flex justify-center">
         {!loading ? (
           <CarouselContainer
             movieData={data?.results}

@@ -33,7 +33,7 @@ const HeroBanner = () => {
   };
 
   return (
-    <div className=" relative w-[100%] h-[25vh]">
+    <div className=" relative w-[100%] h-[25vh] md:h-[35vh] xl:h-[40vh] 2xl:h-[50vh]">
       <div className="w-[100%] h-[100%]">
         {!loading && (
           <img src={heroBnrBg} className="w-[100%] h-[100%] object-cover" />
@@ -43,7 +43,7 @@ const HeroBanner = () => {
       <div className="absolute top-0 w-[100%] h-[102%] bg-gradient-to-b from-[#00000024] to-[#000000]"></div>
 
       <div>
-        <div className="w-[70%] h-[21%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between rounded-md p-1 bg-[#6c90b750]">
+        <div className="w-[70%] h-[21%]  md:w-[50%] md:h-[17%] xl:w-[40%] xl:h-[12%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between rounded-md p-1 bg-[#6c90b750]">
           <input
             type="text"
             placeholder="Search here..."

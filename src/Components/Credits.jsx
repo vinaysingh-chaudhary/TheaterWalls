@@ -10,7 +10,7 @@ function Credits({ id, mediaType }) {
   const writers = credits?.crew?.filter((mem) => mem?.job === "Writer");
 
   return (
-    <div className="w-[100%] h-[100%] flex flex-col justify-center gap-2 items-center pl-2 pr-2">
+    <div className="w-[100%] h-[100%] flex flex-col justify-center lg:items-center gap-2 pl-2 pr-2 sm:pl-5">
       {directors?.length > 0 && (
         <p className="text-white">
           {" "}
