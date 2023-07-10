@@ -5,19 +5,17 @@ import { fetchApi } from "../../API_Service/api";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import SearchQueryCard from "../../Components/SearchQueryCard";
-import { useNavigate } from "react-router-dom";
+
 
 const SearchResultPage = () => {
-  const [compTitle, setCompTitle] = useState("explore");
+
   const [loading, setLoading] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const [data, setData] = useState(null);
-  const navigate = useNavigate();
+
   const { query } = useParams();
-  console.log(query);
 
   const { imgUrl } = useSelector((state) => state.homeSlice);
-  console.log(imgUrl);
 
   useEffect(() => {
     setPageNum(1)
@@ -53,6 +51,8 @@ const SearchResultPage = () => {
     );
   };
 
+  console.log(data);
+
   const dataLength = data?.results.length;
   return (
     <div className="w-[100%] h-[100vh] bg-black">
@@ -68,7 +68,7 @@ const SearchResultPage = () => {
           {data?.results.length > 0 ? (
             <InfiniteScroll
               dataLength={dataLength || []}
-              className="w-[100%] h-[100vh] flex flex-row flex-wrap justify-evenly gap-y-6 overflow-y-auto  pt-2 sm:gap-y-4 sm:justify-center sm:gap-x-4 bg-black"
+              className="w-[100%] h-[100vh] flex flex-row flex-wrap justify-evenly gap-y-4 overflow-y-auto  pt-2 sm:gap-y-4 sm:justify-center sm:gap-x-4 bg-black"
               next={fectNextScroll}
               hasMore={pageNum <= data?.total_pages}
             >

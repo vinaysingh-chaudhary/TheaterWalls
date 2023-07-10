@@ -110,7 +110,7 @@ const ExplorePage = () => {
           next={fetchNextData}
           dataLength={dataLength || []}
           hasMore={pageNum <= data?.total_pages}
-          className="w-[100%] min-h-[100vh] flex flex-row flex-wrap justify-evenly gap-y-6 overflow-y-auto  pt-2 sm:gap-y-4 sm:justify-center sm:gap-x-4 bg-black"
+          className="w-[100%] min-h-[100vh] flex flex-row flex-wrap justify-evenly gap-y-4 overflow-y-auto  pt-2 sm:gap-y-4 sm:justify-center sm:gap-x-4 bg-black"
         >
           {data?.results?.map((item, index) => {
             return (
