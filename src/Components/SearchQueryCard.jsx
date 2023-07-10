@@ -19,7 +19,7 @@ const navigate = useNavigate();
             : poster
         }
         alt=""
-        className="rounded-md h-[80%]"
+        className="rounded-md h-[70%] 2xl:h-[70%] sm:h-[70%]"
       />
 
       <div className="min-w-[65%] min-h-[10%] bg-[#bbbbbc] mt-[-13%] rounded-md flex justify-center items-center gap-2 text-sm text-center">{rating? rating : "No"} <AiFillStar className="text-yellow-500"/></div>
