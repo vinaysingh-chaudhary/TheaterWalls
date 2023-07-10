@@ -9,7 +9,7 @@ const navigate = useNavigate();
 
   return (
     <div
-      className={`max-min-w-[42%] sm:max-w-[30%] md:max-w-[26%] lg:max-w-[23%] xl:max-w-[15%] 2xl:max-w-[13%] max-h-[400px] relative rounded-md p-2 bg-[#151515] flex justify-center items-center flex-col gap-1`}
+      className={`max-w-[42%] sm:max-w-[30%] md:max-w-[26%] lg:max-w-[23%] xl:max-w-[15%] 2xl:max-w-[13%] max-h-[400px] relative rounded-md p-2 bg-[#151515] flex justify-center items-center flex-col gap-1`}
       onClick={() =>navigate(`/${data?.media_type ? data?.media_type : manualMedia || mediaType}/${data?.id}`)}
     >
       <img
