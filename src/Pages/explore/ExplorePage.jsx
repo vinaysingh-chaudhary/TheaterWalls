@@ -78,7 +78,7 @@ const ExplorePage = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-black">
-      <div className="w-full h-[10vh] flex flex-col justify-evenly items-center md:w-[60%] px-2">
+      <div className="w-full h-[10vh] flex flex-col justify-evenly items-center md:w-[60%] px">
         <Select
           className=" w-[90%] react-select-container sortbyDD z-[500]"
           isMulti

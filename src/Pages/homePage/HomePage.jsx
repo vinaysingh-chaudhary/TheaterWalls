@@ -1,6 +1,6 @@
 import React from "react";
 import HeroBanner from "../../Components/HeroBanner";
-import TrendingCarousel from "./TrendingCarousel";
+import TrendingCarousel from "../homePage/TrendingCarousel";
 import Footer from "../../Components/Footer"
 
 const HomePage = () => {
