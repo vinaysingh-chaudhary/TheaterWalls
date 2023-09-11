@@ -5,11 +5,11 @@
 
 
 .react-select-container {
-    &.genresDD {
+    .genresDD {
         width: 100%;
 
     }
-    &.sortbyDD {
+    .sortbyDD {
         width: 100%;
         flex-shrink: 0;
 
