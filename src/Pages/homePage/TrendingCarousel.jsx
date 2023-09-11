@@ -29,7 +29,7 @@ const TrendingCarousel = () => {
       </div>
 
 
-      <div className="w-[100%] h-[80%] flex justify-center">
+      <div className="w-[100%] h-[70%] flex justify-center">
         {!loading ? (
           <CarouselContainer
             movieData={data?.results}
