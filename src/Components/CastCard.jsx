@@ -3,21 +3,22 @@ import Unknownpfp from "../../public/Unknownpfp.png";
 
 function CastCard({ character, profilePic, name }) {
   return (
-    <div className="min-w-[30%] h-[100%] flex flex-col items-center sm:min-w-[20%] md:min-w-[15%] lg:min-w-[12%] xl:min-w-[10%] 2xl:max-w-[8%]">
+    <div className="min-w-[100px] max-w-[100px] h-[200px] flex flex-col items-center justify-between overflow-hidden ">
+      
+      <div className="h-[60%]">
       <img
         src={
           profilePic !== "https://image.tmdb.org/t/p/originalnull"
             ? profilePic
             : Unknownpfp
         }
-        className="w-[100%] aspect-square object-cover object-center text-white rounded-full"
+        className="w-full aspect-square object-cover object-center text-white rounded-full"
         alt=""
       />
-      <p className="text-white text-xl text-center">
-        {name.replace("(voice)", "")}
-      </p>
-      <p className="text-[#ffffff6f] text-center">
-        {character.replace("(voice)", "")}
+      </div>
+
+      <p className="text-white text-lg text-center h-[40%] mb-3">
+        {name?.replace("(voice)", "")}
       </p>
     </div>
   );

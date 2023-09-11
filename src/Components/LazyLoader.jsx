@@ -7,7 +7,9 @@ const LazyLoader = ({ image }) => (
   <LazyLoadImage
     alt={image}
     effect="blur"
-    src={image} />
+    src={image} 
+    className=' rounded-md w-full h-full' 
+    />
 );
 
 export default LazyLoader

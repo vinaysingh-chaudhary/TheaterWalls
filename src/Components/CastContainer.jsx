@@ -11,7 +11,7 @@ function CastContainer({ id, mediaType }) {
   );
 
   return (
-    <div className="w-[100%] h-[100%] flex gap-4 overflow-x-scroll pl-2 items-center scrollbar-hide">
+    <div className="w-full h-full flex gap-4 overflow-x-scroll pl-2 items-center scrollbar-hide">
       {credits?.cast?.length > 0 ? (
         credits?.cast?.map((mem, index) => {
           return (
@@ -24,7 +24,7 @@ function CastContainer({ id, mediaType }) {
           );
         })
       ) : (
-        <p className="text-white text-2xl text-center w-[100%]">
+        <p className="text-white text-2xl text-center w-full">
           No Cast Data found
         </p>
       )}

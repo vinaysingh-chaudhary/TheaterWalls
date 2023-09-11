@@ -40,7 +40,7 @@ const ExplorePage = () => {
   };
 
   const fetchNextData = () => {
-    setLoading(true);
+    // setLoading(true);
     fetchApi(`/discover/${mediaType}?page=${pageNum}`, filter).then(
       (response) => {
         if (response?.results) {
@@ -52,7 +52,7 @@ const ExplorePage = () => {
           setData(response);
         }
         setPageNum((previous) => previous + 1);
-        setLoading(false);
+        // setLoading(false);
       }
     );
   };
@@ -65,7 +65,7 @@ const ExplorePage = () => {
     if (action.name === "Genre") {
       setGenre(selectedOption);
       if (action.action !== "clear") {
-        let genreID = selectedOption.map((genre) => genre.id);
+        let genreID = selectedOption?.map((genre) => genre.id);
         genreID = JSON.stringify(genreID).slice(1, -1);
         filter.with_genres = genreID;
       } else {
@@ -77,10 +77,10 @@ const ExplorePage = () => {
   };
 
   return (
-    <div className="w-[100%] h-[100%] flex flex-col items-center">
-      <div className="w-[100%] h-[10vh] flex flex-col justify-evenly items-center md:w-[60%]">
+    <div className="w-full h-full flex flex-col items-center bg-black">
+      <div className="w-full h-[10vh] flex flex-col justify-evenly items-center md:w-[60%]">
         <Select
-          className=" w-[90%] react-select-container sortbyDD "
+          className=" w-[90%] react-select-container sortbyDD z-[500]"
           isMulti
           name="Genre"
           value={genre}
@@ -95,22 +95,23 @@ const ExplorePage = () => {
       </div>
 
       {loading ? (
-        <div className="w-[100%] h-[100vh] bg-black flex justify-center items-center ">
+        <div className="w-full h-full bg-black flex justify-center items-center ">
           <div className="flex justify-center items-center gap-3 pb-8 bg-black">
-            <div className="w-[100%] min-h-[100%] flex justify-center items-center text-white text-4xl">
+            <div className="w-full min-h-full flex justify-center items-center text-white text-4xl">
             Theatre<span className="text-pink-500">Walls</span>
             </div>
-            <div className="w-[100%] min-h-[100%] flex justify-center items-center text-white text-4xl">
+            <div className="w-full min-h-full flex justify-center items-center text-white text-4xl">
               <MdMovie />
             </div>
           </div>
         </div>
       ) : (
-        <InfiniteScroll
+        <div className="w-full ">
+          <InfiniteScroll
           next={fetchNextData}
           dataLength={dataLength || []}
           hasMore={pageNum <= data?.total_pages}
-          className="w-[100%] min-h-[100vh] flex flex-row flex-wrap justify-evenly gap-y-4 overflow-y-auto  pt-2 sm:gap-y-4 sm:justify-center sm:gap-x-4 bg-black"
+          className="w-[100%] h-full flex flex-row flex-wrap justify-evenly gap-y-4 overflow-y-auto  pt-2 sm:gap-y-3 sm:justify-center sm:gap-x-3 bg-black"
         >
           {data?.results?.map((item, index) => {
             return (
@@ -129,7 +130,8 @@ const ExplorePage = () => {
               />
             );
           })}
-        </InfiniteScroll>
+        </InfiniteScroll></div>
+        
       )}
     </div>
   );

@@ -26,9 +26,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-[7vh] w-[100%] flex justify-between items-center bg-[#0000007d] relative]">
-      <div className="w-[100%] text-white sm:flex sm:justify-start sm:items-center sm:pl-8 ">
-        <p className="text-3xl text-center" onClick={() => navigate("/")}>
+    <div className="h-[7vh] w-full flex justify-between items-center bg-black relative" >
+      <div className="w-full text-white sm:flex sm:justify-start sm:items-center sm:pl-8 ">
+        <p className="text-3xl text-center cursor-pointer" onClick={() => navigate("/")}>
         Theatre<span className="text-pink-500">Walls</span>
         </p>
       </div>
@@ -36,13 +36,13 @@ const Navbar = () => {
       {/* desktop */}
       <ul className=" w-[30%] justify-evenly items-center hidden sm:flex sm:justify-center sm:gap-12 sm:pr-4">
         <li
-          className="text-white hover:underline hover:text-pink-500"
+          className="text-white hover:underline hover:text-pink-500 cursor-pointer"
           onClick={() => navigationHandler("movie")}
         >
           Movies
         </li>
         <li
-          className="text-white hover:underline hover:text-pink-500"
+          className="text-white hover:underline hover:text-pink-500 cursor-pointer"
           onClick={() => navigationHandler("tv")}
         >
           Shows
@@ -64,7 +64,7 @@ const Navbar = () => {
       {/* phone */}
       {phoneMenu && (
         <div
-          className={`w-[100%] h-[100%] bg-[#0000006c] backdrop-blur-md absolute top-[0%] z-[1000] transition-all flex justify-center items-center sm:hidden`}
+          className={`w-full h-full bg-[#0000006c] backdrop-blur-md absolute top-[0%] z-[1000] transition-all flex justify-center items-center sm:hidden`}
         >
           <div className="w-[70%] h-[30%] bg-[#171717d5] flex flex-col justify-center items-center rounded-lg">
             <ul className="flex flex-col text-center justify-center items-center w-[100%] h-[100%] gap-7">

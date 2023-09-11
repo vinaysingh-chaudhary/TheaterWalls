@@ -1,17 +1,13 @@
 import React from "react";
 import HeroBanner from "../../Components/HeroBanner";
-import TrendingCarousel from "../homePage/TrendingCarousel";
-import PopularCarousel from "../homePage/PopularCarousel";
-import TopRatedCarousel from "../homePage/TopRatedCarousel";
+import TrendingCarousel from "./TrendingCarousel";
 import Footer from "../../Components/Footer"
 
 const HomePage = () => {
   return (
-    <div className="max-w-[100vw] h-[100%] scrollbar-hide">
+    <div className="w-full h-[93vh] scrollbar-hide flex flex-col ">
       <HeroBanner />
       <TrendingCarousel />
-      <PopularCarousel />
-      <TopRatedCarousel />
       <Footer/>
     </div>
   );

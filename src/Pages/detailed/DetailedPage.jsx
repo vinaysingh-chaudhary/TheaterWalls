@@ -7,12 +7,14 @@ import Credits from "../../Components/Credits";
 import CastContainer from "../../Components/CastContainer";
 import { AiFillStar } from "react-icons/ai";
 import Noposter from '../../../public/Noposter.png'
+import { MdMovie } from "react-icons/md";
 
 const DetailedPage = () => {
   const { imgUrl } = useSelector((state) => state.homeSlice);
   const backdrop = imgUrl?.backdrop;
   const { id } = useParams();
   const { mediaType } = useParams();
+
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
   const genresId = data?.genres?.map((genre) => genre.id);
   const backdropImg = `${backdrop}${
@@ -20,7 +22,24 @@ const DetailedPage = () => {
   }`
 
   return (
-    <div className="w-[100%] h-[auto] flex flex-col items-center bg-black ">
+    <div className="w-full h-full bg-black">
+      {
+        loading 
+         ?  (
+          <div className="w-full h-full bg-black flex justify-center items-center ">
+          <div className="flex justify-center items-center gap-3 pb-8 bg-black">
+            <div className="w-full min-h-full flex justify-center items-center text-white text-4xl">
+            Theatre<span className="text-pink-500">Walls</span>
+            </div>
+            <div className="w-full min-h-full flex justify-center items-center text-white text-4xl">
+              <MdMovie />
+            </div>
+          </div>
+        </div>
+        ) 
+        
+        :(
+          <div className="w-[100%] h-[auto] flex flex-col items-center bg-black ">
       <div className="w-[100%] h-[70vh] relative md:h-[80vh]">
         <img
           className="w-[100%] h-[100%] object-cover md:object-top 2xl:object-center "
@@ -30,12 +49,12 @@ const DetailedPage = () => {
 
         <div className="w-[100%] h-[100%] absolute bottom-[-5px] bg-gradient-to-t from-[black] to-[#ffffff00]"></div>
 
-        <div className=" absolute bottom-[7%]  z-[10000] w-[100%] flex flex-col gap-3 md:flex md:justify-center md:items-center  sm:pl-4 ">
-          <h1 className="text-white text-5xl pl-2 pr-1">
-            {data?.original_title
-              ? `${data?.original_title}`
-              : `${data?.original_name}`}
-          </h1>
+        <div className=" absolute bottom-[7%] z-[10000] w-[100%] flex flex-col gap-3 justify-center items-center md:flexjustify-center md:items-center  sm:pl-4 ">
+          <p className="text-white text-5xl pl-2 pr-1 text-center">
+            {  data?.original_title
+              ? `${data?.original_title === "undefined" ? "Title" : data?.original_title }`
+              : `${data?.original_name  === "undefined" ? "Title" : data?.original_name}`}
+          </p>
           <p className="text-[#ffffff96] pl-2 text-lg">{data?.tagline}</p>
         </div>
 
@@ -91,11 +110,19 @@ const DetailedPage = () => {
         <Credits id={id} mediaType={mediaType} />
       </div>
 
-      <div className="w-[100%] h-[35vh] flex flex-col gap-4 items-center sm:h-[35vh] md:h-[30vh] xl:h-[34vh] ">
+      <div className="w-full h-[20%] flex flex-col gap-4 items-center">
         <p className=" w-full text-3xl text-white text-center">Cast </p>
         <CastContainer id={id} mediaType={mediaType} />
       </div>
     </div>
+        ) 
+      }
+
+
+    </div>
+
+
+    
   );
 };
 
