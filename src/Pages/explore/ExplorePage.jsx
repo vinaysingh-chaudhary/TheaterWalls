@@ -78,7 +78,7 @@ const ExplorePage = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-black">
-      <div className="w-full h-[10vh] flex flex-col justify-evenly items-center md:w-[60%]">
+      <div className="w-full h-[10vh] flex flex-col justify-evenly items-center md:w-[60%] px-2">
         <Select
           className=" w-[90%] react-select-container sortbyDD z-[500]"
           isMulti
@@ -106,7 +106,7 @@ const ExplorePage = () => {
           </div>
         </div>
       ) : (
-        <div className="w-full ">
+        <div className="w-full flex justify-center items-center">
           <InfiniteScroll
           next={fetchNextData}
           dataLength={dataLength || []}
